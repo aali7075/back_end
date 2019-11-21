@@ -79,4 +79,4 @@ function add_data_all(user){
 
 }
 
-add_data_all('Aaron')
+add_data_all('Aaron');
