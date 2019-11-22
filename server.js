@@ -102,20 +102,15 @@ app.get('/', function(req, res) {
         });//end fetch 
 }); //end get request
 
-/*app.get('/recipe', function(req, res) {
+app.get('/recipe', function(req, res) {
 
-    //gets random recipes
-     fetch('https://api.spoonacular.com/recipes/random?number=30&apiKey=5eefffc51aab46cea22faa246a736907').then(response => {
-          return response.json();
-        })
-        .then(data =>{
+  var recipe_id= req.query.recipe;
+  console.log(recipe_id);
 
-      res.render('pages/home_page',{
-        my_title: "reciMe",
-        data: data.recipes
+      res.render('pages/test_page.pug',{
+        my_title: "reciMe"
 
       })
-        });//end fetch 
 }); //end get request*/
 
 
