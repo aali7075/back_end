@@ -45,7 +45,8 @@ style.
 #grid.wrapper
   each val, i in data
     .col
-      img.image(src=val.image alt=val.title)
-      .overlay(id ='overlay'+i onmouseover='hoverControl("overlay'+i+'")' onmouseout='hoverControlStop("overlay'+i+'")' health=val.healthScore)
-        .text(id ='overlay'+i+'Text' name=val.title)
+      a(href='http://localhost:3000/recipe' style="display:block")
+        img.image(src=val.image alt=val.title)
+        .overlay(id ='overlay'+i onmouseover='hoverControl("overlay'+i+'")' onmouseout='hoverControlStop("overlay'+i+'")' health=val.healthScore)
+          text(id ='overlay'+i+'Text' name=val.title class="text")
 include ../partials/footer.pug

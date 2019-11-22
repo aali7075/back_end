@@ -1,30 +1,9 @@
-function getSearch(){
-	var input = document.getElementById("searchBar").value;
-	console.log(input);
-	if(input=="hello"){
-		document.getElementById("bar").style.backgroundColor= "red";
-	}
-	else{
-		document.getElementById("bar").style.backgroundColor= "cyan";
-	}
-
-	return input;
-}
-
-function recipeDisplay(){
-	document.getElementById("recipe-1-list").style.backgroundColor="cyan";
-}
-
-function search(){
-	var input = document.getElementById("searchBar").value;
-}
-
 //changes color over image when mouse moves over it
 //color changes based off healthScore
-function hoverControl(overlay){
+function hoverControl(overlayId){
 
 	//get the overlay of the image mouse is hovering over
-	var overlay =document.getElementById(overlay);
+	var overlay =document.getElementById(overlayId);
 
 	var textDisplay = document.getElementById(overlay.id+"Text");
 
@@ -49,22 +28,12 @@ function hoverControl(overlay){
 	}
 
 		textDisplay.innerHTML = recipeName;
-
-	
-
 }
 
 //used to remove color over image effect
-function hoverControlStop(overlay){
-	var overlay =document.getElementById(overlay);
+function hoverControlStop(overlayId){
+	var overlay =document.getElementById(overlayId);
 	overlay.style.opacity=0;
 }
 
-
-
-function changeColor(id){
-	document.getElementById(id).style.backgroundColor = "green";
-	document.getElementById(id).style.opacity = .5;
-
-}
 

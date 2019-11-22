@@ -88,6 +88,23 @@ add_data_all('Aaron');
 
 app.get('/', function(req, res) {
 
+    //gets random recipes
+     fetch('https://api.spoonacular.com/recipes/random?number=4&apiKey=5eefffc51aab46cea22faa246a736907').then(response => {
+          return response.json();
+        })
+        .then(data =>{
+
+      res.render('pages/home_page',{
+        my_title: "reciMe",
+        data: data.recipes
+
+      })
+        });//end fetch 
+}); //end get request
+
+/*app.get('/recipe', function(req, res) {
+
+    //gets random recipes
      fetch('https://api.spoonacular.com/recipes/random?number=30&apiKey=5eefffc51aab46cea22faa246a736907').then(response => {
           return response.json();
         })
@@ -97,15 +114,9 @@ app.get('/', function(req, res) {
         my_title: "reciMe",
         data: data.recipes
 
-
       })
-
-
-
-
         });//end fetch 
-
-}); //end get request
+}); //end get request*/
 
 
 app.listen(3000);
