@@ -140,65 +140,32 @@ function search(){
 
 //changes color over image when mouse moves over it
 
-
 function hoverControl(overlay){
 	var overlay =document.getElementById(overlay);
-	overlay.style.opacity=0.75;
-	var string= overlay.id+"Text";
+
+
 
 	var text = document.getElementById(overlay.id+"Text");
 
+	var healthScore = overlay.getAttribute("health");
 
-	if(overlay.id == "overlay1"){
-		overlay.style.backgroundColor="red";
-		text.innerHTML = "UNHEALTHY";
-
-	}
-
-		if(overlay.id == "overlay2"){
+	if (healthScore>75){
 		overlay.style.backgroundColor="green";
-		text.innerHTML = "HEALTHY";
+		overlay.style.opacity=0.75;
 
 	}
-		if(overlay.id == "overlay3"){
+	else if(healthScore<25){
+		overlay.style.backgroundColor="red";
+		overlay.style.opacity=0.75;
+	}
+	else{
 		overlay.style.backgroundColor="yellow";
-		text.style.color= "black";
-		text.innerHTML = "HIGH IN FATS, BUT LOW ON SUGAR";
-
-	}
-		if(overlay.id == "overlay4"){
-		overlay.style.backgroundColor="orange";
-		text.innerHTML = "HIGH IN sugar, BUT LOW ON starch";
-
+		overlay.style.opacity=0.5;
 	}
 
-			if(overlay.id == "overlay5"){
-		overlay.style.backgroundColor="green";
-		text.innerHTML = "a heathy dish";
+		text.innerHTML = text.getAttribute("name");
 
-	}
-			if(overlay.id == "overlay6"){
-		overlay.style.backgroundColor="red";
-		text.innerHTML = "HIGH IN sugar AND fat";
-
-	}
-	if(overlay.id == "overlay7"){
-		overlay.style.backgroundColor="purple";
-		text.innerHTML = "FAT ASS";
-
-	}
-		if(overlay.id == "overlay8"){
-		overlay.style.backgroundColor="magenta";
-		text.innerHTML = "exotic meal";
-
-	}
-		if(overlay.id == "recipe-1-id"){
-		overlay.style.backgroundColor="magma";
-		text.innerHTML = "Click For More Info";
-
-	}
-
-
+	
 
 }
 
@@ -210,98 +177,6 @@ function hoverControlStop(overlay){
 }
 
 
-function populate(array){
-
-
-	for (var i = 0; i < 4; i++) {
-		console.log(mockApi[i]);
-	
-
-
-
-
-
-
-	 /** creates <div class="col"> </div> inside grid*/
-
-	 //get grid
-	var grid = document.getElementById("grid");
-
-	//get create a div
-	var col=document.createElement("div");
-
-	//give class=  text
-	var att = document.createAttribute("class");
-	att.value="col";
-
-	//add class = col
-	col.setAttributeNode(att);
-
-	//add to grid
-	grid.appendChild(col);
-
-
-
-
-	 /** <img src="./a.jfif" class="image"> inside col*/
-
-	var img = document.createElement("img");
-	var source = document.createAttribute("src");
-	source.value = mockApi[i].image;
-	img.setAttributeNode(source);
-	var att2 = document.createAttribute("class");
-	att2.value="image";
-	img.setAttributeNode(att2);
-	col.appendChild(img);
-
-	/**	<div class="overlay" id = "overlay1" onmouseover='hoverControl("overlay1")'
-	 onmouseout='hoverControlStop("overlay1")'> */
-
-
-	var colDiv = document.createElement("div");
-
-	var att3 = document.createAttribute("class");
-	att3.value="overlay";
-	colDiv.setAttributeNode(att3);
-
-	var att4 = document.createAttribute("id");
-	att4.value="overlay"+i;
-	colDiv.setAttributeNode(att4);
-
-	var att5 = document.createAttribute("onmouseover");
-	att5.value="hoverControl("+'"overlay'+i+'")';
-	colDiv.setAttributeNode(att5);
-
-	var att6 = document.createAttribute("onmouseout");
-	att6.value="hoverControlStop("+'"overlay'+i+'")';
-	colDiv.setAttributeNode(att6);
-	col.appendChild(colDiv);
-	console.log(att6.value);
-	console.log(att5.value);
-
-
-/**  <div class="text" id="overlay1Text">Hello World</div> */
-
-	var text =document.createElement("div");
-	var att7 = document.createAttribute("class");
-	att7.value="text";
-	text.setAttributeNode(att7);
-	var att8 = document.createAttribute("id");
-	att8.value="overlay"+i+"Text";
-
-	text.setAttributeNode(att8);
-	colDiv.appendChild(text);
-
-
-
-
-	console.log(document.getElementById("grid"));
-
-
-
-
-}
-}
 
 function changeColor(id){
 	document.getElementById(id).style.backgroundColor = "green";
@@ -310,13 +185,3 @@ function changeColor(id){
 
 }
 
-
-
-
-
-  /**    <img src="./a.jfif" class="image">
-
-        <div class="overlay" id = "overlay1" onmouseover='hoverControl("overlay1")'
-         onmouseout='hoverControlStop("overlay1")'>
-    <div class="text" id="overlay1Text">Hello World</div>
-  </div> */

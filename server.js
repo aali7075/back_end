@@ -21,6 +21,9 @@ const pug = require('pug'); // Add the 'pug' view engine
 //Create Database Connection
 const pgp = require('pg-promise')();
 
+//Create fetch API. use command: 'npm i node-fetch --save' to install 
+const fetch = require("node-fetch");
+
 
 /**********************
 
@@ -49,7 +52,7 @@ let db = pgp(dbConfig);
 app.set('view engine', 'pug');
 app.use(express.static(__dirname + '/')); // This line is necessary for us to use relative paths and access our resources directory
 
-
+/*
 
 function get_all_files(){
   var files = fs.readdirSync('recipes');
@@ -80,3 +83,37 @@ function add_data_all(user){
 }
 
 add_data_all('Aaron');
+
+*/
+
+app.get('/', function(req, res) {
+
+     fetch('https://api.spoonacular.com/recipes/random?number=10&apiKey=5eefffc51aab46cea22faa246a736907').then(response => {
+          return response.json();
+        })
+        .then(data =>{
+
+      res.render('pages/home_page',{
+        my_title: "Home Page",
+        data: data.recipes
+
+
+      })
+
+
+
+
+        });//end fetch 
+
+      /*  res.render('pages/home_page',{
+          my_title: "reciMe"
+        })*/
+  
+
+
+
+}); //end get request
+
+
+app.listen(3000);
+console.log('3000 is the magic port');
