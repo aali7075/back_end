@@ -88,13 +88,13 @@ add_data_all('Aaron');
 
 app.get('/', function(req, res) {
 
-     fetch('https://api.spoonacular.com/recipes/random?number=10&apiKey=5eefffc51aab46cea22faa246a736907').then(response => {
+     fetch('https://api.spoonacular.com/recipes/random?number=30&apiKey=5eefffc51aab46cea22faa246a736907').then(response => {
           return response.json();
         })
         .then(data =>{
 
       res.render('pages/home_page',{
-        my_title: "Home Page",
+        my_title: "reciMe",
         data: data.recipes
 
 
@@ -104,13 +104,6 @@ app.get('/', function(req, res) {
 
 
         });//end fetch 
-
-      /*  res.render('pages/home_page',{
-          my_title: "reciMe"
-        })*/
-  
-
-
 
 }); //end get request
 
