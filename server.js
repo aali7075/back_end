@@ -24,6 +24,8 @@ const pgp = require('pg-promise')();
 //Create fetch API. use command: 'npm i node-fetch --save' to install 
 const fetch = require("node-fetch");
 
+//attempting to add jquery to this server
+
 
 /**********************
 
@@ -51,6 +53,8 @@ let db = pgp(dbConfig);
 // set the view engine to ejs
 app.set('view engine', 'pug');
 app.use(express.static(__dirname + '/')); // This line is necessary for us to use relative paths and access our resources directory
+
+var apiKey='apiKey=bc4bf97a26b6451f8265794ecb32f145'
 
 /*
 
@@ -88,8 +92,8 @@ add_data_all('Aaron');
 
 app.get('/', function(req, res) {
 
-    //gets random recipes
-     fetch('https://api.spoonacular.com/recipes/random?number=4&apiKey=5eefffc51aab46cea22faa246a736907').then(response => {
+    //gets random recipes, can change how many by changing number
+     fetch(`https://api.spoonacular.com/recipes/random?number=4&${apiKey}`).then(response => {
           return response.json();
         })
         .then(data =>{
@@ -105,12 +109,43 @@ app.get('/', function(req, res) {
 app.get('/recipe', function(req, res) {
 
   var recipe_id= req.query.recipe;
-  console.log(recipe_id);
 
-      res.render('pages/test_page.pug',{
-        my_title: "reciMe"
+  var url = `https://api.spoonacular.com/recipes/${recipe_id}/information?${apiKey}`
+
+       fetch(url).then(response => {
+          return response.json();
+        })
+        .then(data =>{
+
+         var image = data.image;
+         var health_info = `https://api.spoonacular.com/recipes/${recipe_id}/nutritionWidget?defaultCss=true&${apiKey}`;
+         var instructions = data.instructions;
+         
+         //create smaller array ingredients for ease of use
+         var tempIngredients = data.extendedIngredients;
+         var ingredients = [];
+         for (var i = 0;i<tempIngredients.length;i++) {
+          ingredients[i]= {
+          "name": tempIngredients[i].name,
+          "amount": tempIngredients[i].amount,
+          "unit":tempIngredients[i].unit           
+         }
+          }//for loop
+
+          console.log(url);
+         
+      res.render('pages/recipe_page',{
+        my_title: "reciMe",
+        health_info: health_info,
+        ingredients: ingredients,
+        image: image,
+        instructions: instructions,
+        recipe_name: data.title
 
       })
+        });//end fetch
+
+
 }); //end get request*/
 
 

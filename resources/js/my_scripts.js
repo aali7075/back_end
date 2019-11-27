@@ -14,3 +14,4 @@ function viewStudentStats(id, toggle)
 		document.getElementById(id).style.height = "auto";
 	}
 }
+
