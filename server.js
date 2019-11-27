@@ -93,7 +93,13 @@ add_data_all('Aaron');
 app.get('/', function(req, res) {
 
     //gets random recipes, can change how many by changing number
-     fetch(`https://api.spoonacular.com/recipes/random?number=4&${apiKey}`).then(response => {
+
+    var number = 4;
+
+    var url= `https://api.spoonacular.com/recipes/random?number=${number}&${apiKey}`;
+
+
+     fetch(url).then(response => {
           return response.json();
         })
         .then(data =>{
@@ -132,7 +138,7 @@ app.get('/recipe', function(req, res) {
          }
           }//for loop
 
-          console.log(url);
+          
          
       res.render('pages/recipe_page',{
         my_title: "reciMe",
