@@ -149,5 +149,27 @@ app.get('/recipe', function(req, res) {
 }); //end get request*/
 
 
+app.get('/search', function(req, res) {
+
+  var search =req.query.search;
+  var number = 4;
+
+  //api call based on string entered by user
+  var url = `https://api.spoonacular.com/recipes/search?number=${number}&query=${search}&${apiKey}`
+
+     fetch(url).then(response => {
+          return response.json();
+        })
+        .then(data =>{
+
+      res.render('pages/search',{
+        my_title: "reciMe",
+        data: data.results
+      })
+        });//end fetch 
+
+}); //end get request*/
+
+
 app.listen(3000);
 console.log('3000 is the magic port');
