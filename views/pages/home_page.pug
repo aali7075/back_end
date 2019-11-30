@@ -46,7 +46,7 @@ style.
   if(data)
     each val, i in data
       .col
-        a(href='/recipe?recipe='+val.id style="display:block")
+        a(href=`/recipe?recipe=${val.id}` style="display:block")
           img.image(src=val.image alt=val.title)
           .overlay(id ='overlay'+i onmouseover='hoverControl("overlay'+i+'")' onmouseout='hoverControlStop("overlay'+i+'")' health=val.healthScore)
             text(id ='overlay'+i+'Text' name=val.title class="text")
